@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Club Sportif{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Inscription au Club Sportif</h2>
+                </div>
+                <div class="card-body">
+                    {% if submitted %}
+                        <div class="alert {% if reduction == 20 %}alert-success{% else %}alert-info{% endif %}">
+                            <h4>Merci pour votre inscription !</h4>
+                            <p>{{ message }}</p>
+                            
+                            <div class="mt-3">
+                                <h5>Récapitulatif</h5>
+                                <ul>
+                                    <li><strong>Civilité :</strong> {{ civilite }}</li>
+                                    <li><strong>Nom :</strong> {{ nom }}</li>
+                                    <li><strong>Prénom :</strong> {{ prenom }}</li>
+                                    <li><strong>Date d'inscription :</strong> {{ dateInscription }}</li>
+                                    <li><strong>Ancienneté :</strong> {{ annees }} ans</li>
+                                    <li><strong>Réduction applicable :</strong> {{ reduction }}%</li>
+                                </ul>
+                            </div>
+                            
+                            <a href="{{ path('app_dsa1ex_q3') }}" class="btn btn-secondary mt-3">Nouvelle inscription</a>
+                        </div>
+                    {% else %}
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="civilite" class="form-label">Civilité</label>
+                                <select class="form-select" id="civilite" name="civilite" required>
+                                    <option value="">Choisissez...</option>
+                                    <option value="M.">Monsieur</option>
+                                    <option value="Mme">Madame</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dateInscription" class="form-label">Date d'inscription</label>
+                                <input type="date" class="form-control" id="dateInscription" name="dateInscription" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="mb-0">Rejoignez notre club pour bénéficier de nombreux avantages et activités sportives !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
